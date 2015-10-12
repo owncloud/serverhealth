@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<info>
+    <id>health</id>
+    <name>Health</name>
+    <description>This app checks the ownCloud instance for possible problems.</description>
+    <licence>AGPL</licence>
+    <author>Morris Jobke</author>
+    <version>1.2</version>
+    <namespace>Health</namespace>
+    <category>tool</category>
+    <dependencies>
+        <owncloud min-version="8.0" />
+    </dependencies>
+</info>
