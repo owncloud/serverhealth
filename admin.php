@@ -11,7 +11,7 @@
  * See the COPYING-README file.
  */
 
-$app = new \OCP\AppFramework\App('health');
-/** @var OCA\Health\Controller\SettingsController $controller */
-$controller = $app->getContainer()->query('OCA\Health\Controller\SettingsController');
+$app = new \OCP\AppFramework\App('serverhealth');
+/** @var OCA\ServerHealth\Controller\SettingsController $controller */
+$controller = $app->getContainer()->query('OCA\ServerHealth\Controller\SettingsController');
 return $controller->displayAdmin()->render();

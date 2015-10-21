@@ -5,7 +5,7 @@
  * later. See the COPYING file.
  *
  * @author Morris Jobke <hey@morrisjobke.de>
- * @copyright Morris Jobke 2015
+ * @copyright Copyright (c) 2015, ownCloud, Inc.
  */
 
 (function ($, OC, OCA) {
@@ -13,15 +13,15 @@
 	OCA.Health = {
 
 		render: function(data) {
-			var template = Handlebars.compile($('#health-checks-template').html()),
-				$settingsSection = $('#app-health');
+			var template = Handlebars.compile($('#serverhealth-checks-template').html()),
+				$settingsSection = $('#app-serverhealth');
 
 			$settingsSection.find('checks-list').remove();
 			$settingsSection.append(template(data));
 		},
 
 		load: function() {
-			$.get(OC.generateUrl('/apps/health/checks'))
+			$.get(OC.generateUrl('/apps/serverhealth/checks'))
 				.done(function(data){
 					OCA.Health.render(data);
 				})

@@ -1,15 +1,17 @@
 <?php
 /**
- * ownCloud - health
+ * ownCloud - ServerHealth
  *
  * This file is licensed under the Affero General Public License version 3 or
  * later. See the COPYING file.
  *
  * @author Morris Jobke <hey@morrisjobke.de>
- * @copyright Morris Jobke 2015
+ * @copyright Copyright (c) 2015, ownCloud, Inc.
  */
 
-namespace OCA\Health\Checks;
+namespace OCA\ServerHealth\Checks;
+
+use OCA\ServerHealth\Db\Check;
 
 interface ICheck {
 
@@ -34,4 +36,23 @@ interface ICheck {
 	 * @return true|string true if active else a string with the cause why it is not active
 	 */
 	public function isActive();
+
+	/**
+	 * Creates an entity object to store in the database
+	 *
+	 * @return Check DB entity
+	 */
+	public function getEntity();
+
+	/**
+	 * Sets all info from an entity object
+	 *
+	 * @param Check $checkEntity DB entity
+	 */
+	public function setEntity($checkEntity);
+
+	/**
+	 * @return IState the state of the check
+	 */
+	public function getState();
 }
