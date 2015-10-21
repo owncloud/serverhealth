@@ -1,4 +1,4 @@
-# Health
+# ServerHealth
 Place this app in **owncloud/apps/**
 
 ## Publish to App Store
