@@ -51,10 +51,11 @@ class SettingsController extends Controller {
 
 		$mapping = array_map(function(ICheck $check) {
 			return [
+				'id' => $check->getId(),
 				'name' => $check->getName(),
 				'description' => $check->getDescription(),
 				'state' => $check->getState()->getArrayRepresentation(),
-				'lastRun' => '2015-10-09 15:34:12'
+				'lastRun' => $check->getLastRunDateTime()->format('Y-m-d\TH:i:s.000\Z'),
 			];
 		}, $checks);
 
@@ -67,12 +68,16 @@ class SettingsController extends Controller {
 	 * @NoCSRFRequired
 	 *
 	 * @param integer $checkId the id of the check to perform the next steps with
+	 * @param bool $restart whether the run should be restarted
 	 * @return Response
 	 */
-	public function runStep($checkId) {
+	public function runStep($checkId, $restart) {
 		$check = $this->checkManager->getCheck($checkId);
 
-		// TODO update run time on trigger
+		if ($restart) {
+			$check->reset();
+		}
+
 		$check->runStep();
 
 		return new DataResponse($check->getState()->getArrayRepresentation());

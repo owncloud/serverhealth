@@ -1,0 +1,17 @@
+.checks-list .text-centered {
+	text-align: center;
+}
+
+.progress {
+	background-color: #F1F1F1;
+	border-radius: 4px;
+}
+
+.progress-bar {
+	background-color: #1D2D44;
+	color: white;
+	text-shadow: #1D2D44 0 0 5px;
+	border-radius: 4px;
+	padding: 5px 0;
+	margin: 3px 0;
+}

@@ -17,28 +17,14 @@ use \OCP\AppFramework\Db\Entity;
 /**
  * @method string getClass()
  * @method setClass(string $class)
+ * @method string getState()
+ * @method setState(string $state)
+ * @method string getLastRun()
+ * @method setLastRun(string $state)
  */
 class Check extends Entity {
 
 	public $class;
 	public $lastRun;
-
-	/**
-	 * @return \Datetime
-	 */
-	public function getLastRun() {
-		// TODO new Date().toJSON()
-		// "2015-10-19T12:14:16.622Z"
-		return \DateTime::createFromFormat(\DateTime::ISO8601, $this->lastRun);
-	}
-
-	/**
-	 * @param \DateTime $lastRun
-	 */
-	public function setLastRun($lastRun) {
-		if($lastRun instanceof \DateTime) {
-			$lastRun = $lastRun->format(\DateTime::ISO8601);
-		}
-		$this->setter('lastRun', [$lastRun]);
-	}
+	public $state;
 }

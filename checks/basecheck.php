@@ -27,7 +27,7 @@ abstract class BaseCheck implements ICheck {
 
 	public function __construct(CheckMapper $checkMapper) {
 		$this->checkMapper = $checkMapper;
-		$this->state = new State('', false, true);
+		$this->state = new State('', false);
 	}
 
 	/**
@@ -56,7 +56,7 @@ abstract class BaseCheck implements ICheck {
 	}
 
 	public function runStep() {
-		$this->checkEntity->setLastRun(new \DateTime());
+		$this->setLastRunDateTime(new \DateTime());
 		$this->saveEntity();
 	}
 
@@ -76,5 +76,35 @@ abstract class BaseCheck implements ICheck {
 	 */
 	public function getDescription(){
 		return $this->description;
+	}
+
+	/**
+	 * @return integer ID of the check
+	 */
+	public function getId() {
+		return $this->checkEntity->getId();
+	}
+
+	public function reset() {
+		$this->state = new State('', false);
+		$this->checkEntity->setState('');
+		$this->saveEntity();
+	}
+
+	/**
+	 * @return \Datetime
+	 */
+	public function getLastRunDateTime() {
+		return \DateTime::createFromFormat('Y-m-d\TH:i:s.000\Z', $this->checkEntity->getLastRun());
+	}
+
+	/**
+	 * @param \DateTime $lastRun
+	 */
+	public function setLastRunDateTime($lastRun) {
+		if($lastRun instanceof \DateTime) {
+			$lastRun = $lastRun->format('Y-m-d\TH:i:s.000\Z');
+		}
+		$this->checkEntity->setLastRun($lastRun);
 	}
 }

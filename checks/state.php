@@ -17,40 +17,51 @@ class State implements IState {
 	protected $stateText;
 	/** @var float|false */
 	protected $statePercentage;
-	/** @var bool */
-	protected $hasNextStep;
 
 	/**
 	 * @param string $stateText
 	 * @param float|false $statePercentage
-	 * @param bool $hasNextStep
 	 */
-	public function __construct($stateText, $statePercentage, $hasNextStep = true) {
+	public function __construct($stateText, $statePercentage) {
 		$this->stateText = $stateText;
 		$this->statePercentage = $statePercentage;
-		$this->hasNextStep = $hasNextStep;
 	}
 
 	/**
 	 * @return boolean indicates if there are steps to run left
 	 */
 	public function hasNextStep() {
-		return $this->hasNextStep;
+		return $this->statePercentage < 1;
 	}
 
 	/**
-	 * @return string state of the text in localized format
+	 * @return string state as a text in localized format
 	 */
 	public function getStateAsText() {
 		return $this->stateText;
 	}
 
 	/**
-	 * @return float|false state of number between 0 and 1 or false if not
+	 * @param string $text state as a text in localized format
+	 */
+	public function setStateAsText($text) {
+		$this->stateText = $text;
+	}
+
+	/**
+	 * @return float|false state as a number between 0 and 1 or false if not
 	 * determinable
 	 */
 	public function getStateAsPercentage() {
-		return $this->statePercentage;
+		return $this->statePercentage > 1 ? 1 : $this->statePercentage;
+	}
+
+	/**
+	 * @param string $percentage state as a number between 0 and 1 or false if not
+	 * determinable
+	 */
+	public function setStateAsPercentage($percentage) {
+		$this->statePercentage = $percentage;
 	}
 
 	/**

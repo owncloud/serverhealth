@@ -21,6 +21,11 @@ interface ICheck {
 	public function getName();
 
 	/**
+	 * @return integer ID of the check
+	 */
+	public function getId();
+
+	/**
 	 * @return string description of the check
 	 */
 	public function getDescription();
@@ -55,4 +60,19 @@ interface ICheck {
 	 * @return IState the state of the check
 	 */
 	public function getState();
+
+	/**
+	 * resets the state of this checks
+	 */
+	public function reset();
+
+	/**
+	 * @return \Datetime
+	 */
+	public function getLastRunDateTime();
+
+	/**
+	 * @param \DateTime $lastRun
+	 */
+	public function setLastRunDateTime($lastRun);
 }

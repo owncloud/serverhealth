@@ -25,6 +25,12 @@
 				<notnull>false</notnull>
 				<length>255</length>
 			</field>
+			<field>
+				<name>state</name>
+				<type>text</type>
+				<notnull>false</notnull>
+				<length>255</length>
+			</field>
 
 			<index>
 				<name>serverhealth_checks_class_idx</name>
