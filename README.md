@@ -1,6 +1,8 @@
 # ServerHealth
 Place this app in **owncloud/apps/**
 
+Idea in https://github.com/owncloud/core/issues/18922
+
 ## Publish to App Store
 
 First get an account for the [App Store](http://apps.owncloud.com/) then run:
